@@ -1,0 +1,261 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de Bord - Gestion de Stock{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Ajoutez ici d'autres feuilles de style spécifiques au tableau de bord si nécessaire -->
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Main content -->
+        <main>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <div class="d-flex align-items-center">
+                    <a class="navbar-brand d-flex align-items-center" href="#">        
+                        <span>Tableau de bord</span>
+                    </a>
+                </div>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Rechercher">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cartes statistiques modernes -->
+            <div class="row g-4 mb-4">
+                <!-- Carte Commandes -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card">
+                        <div class="stat-card__content">
+                            <p class="stat-card__title">Commandes</p>
+                            <h2 class="stat-card__value">80</h2>
+                            <p class="stat-card__comparison">
+                                <span class="stat-card__percentage stat-card__percentage--positive">
+                                    <i class="fas fa-arrow-up"></i> 5%
+                                </span>
+                                <span class="stat-card__period">Depuis hier</span>
+                            </p>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--primary">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carte Ventes -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card">
+                        <div class="stat-card__content">
+                            <p class="stat-card__title">Ventes</p>
+                            <h2 class="stat-card__value">180</h2>
+                            <p class="stat-card__comparison">
+                                <span class="stat-card__percentage stat-card__percentage--positive">
+                                    <i class="fas fa-arrow-up"></i> 8%
+                                </span>
+                                <span class="stat-card__period">Depuis hier</span>
+                            </p>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--success">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carte Articles -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card">
+                        <div class="stat-card__content">
+                            <p class="stat-card__title">Articles</p>
+                            <h2 class="stat-card__value">90</h2>
+                            <p class="stat-card__comparison">
+                                <span class="stat-card__percentage stat-card__percentage--negative">
+                                    <i class="fas fa-arrow-down"></i> 3%
+                                </span>
+                                <span class="stat-card__period">Depuis hier</span>
+                            </p>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--info">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carte Chiffre d'Affaires -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card">
+                        <div class="stat-card__content">
+                            <p class="stat-card__title">Chiffre d'Affaires</p>
+                            <h2 class="stat-card__value">20 000 €</h2>
+                            <p class="stat-card__comparison">
+                                <span class="stat-card__percentage stat-card__percentage--positive">
+                                    <i class="fas fa-arrow-up"></i> 7%
+                                </span>
+                                <span class="stat-card__period">Aujourd'hui</span>
+                            </p>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--warning">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tableau des ventes récentes -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <div class="card shadow-sm mb-4">
+                        <div class="stat-card">
+                            <div class="stat-card__content">
+                                <h5 class="card-title mb-3" style="text-align: center;">Ventes Récentes (€)</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped align-middle">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Client</th>
+                                                <th>Article</th>
+                                                <th>Prix</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                            <tr>
+                                <td>02 Août 2024</td>
+                                <td>Francois Jacques</td>
+                                <td>Redmi 9</td>
+                                <td>800</td>
+                            </tr>
+                            <tr>
+                                <td>02 Août 2024</td>
+                                <td>Francois Jacques</td>
+                                <td>HP dek</td>
+                                <td>1 500</td>
+                            </tr>
+                            <tr>
+                                <td>02 Août 2024</td>
+                                <td>Francois Julie</td>
+                                <td>HP dek</td>
+                                <td>400</td>
+                            </tr>
+                            <tr>
+                                <td>02 Août 2024</td>
+                                <td>Francois Henry</td>
+                                <td>Apple</td>
+                                <td>400</td>
+                            </tr>
+                            <tr>
+                                <td>02 Août 2024</td>
+                                <td>Francois Jacques</td>
+                                <td>Redmi 10</td>
+                                <td>400</td>
+                            </tr>
+                            <tr>
+                                <td>02 Août 2024</td>
+                                <td>Francois Henry</td>
+                                <td>Redmi 9</td>
+                                <td>400</td>
+                            </tr>
+                            <tr>
+                                <td>02 Août 2024</td>
+                                <td>Francois Henry</td>
+                                <td>Redmi 10</td>
+                                <td>800</td>
+                            </tr>
+                            <tr>
+                                <td>02 Août 2024</td>
+                                <td>Francois Henry</td>
+                                <td>Redmi 9</td>
+                                <td>80</td>
+                            </tr>
+                            <tr>
+                                <td>02 Août 2024</td>
+                                <td>Francois Henry</td>
+                                <td>HP dek</td>
+                                <td>500</td>
+                            </tr>
+                            <tr>
+                                <td>02 Août 2024</td>
+                                <td>Francois Henry</td>
+                                <td>Redmi 9</td>
+                                <td>160</td>
+                            </tr>
+                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="stat-card__icon stat-card__icon--primary">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top selling articles avec graphique -->
+                <div class="col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-card__content">
+                            <h5 class="card-title mb-3" style="text-align: center;">Articles les Plus Vendus (€)</h5>
+                            <div class="chart-container">
+                                <canvas id="topSellingChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--info">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Code pour créer un graphique des articles les plus vendus
+    var ctx = document.getElementById('topSellingChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['HP', 'Apple', 'Redmi', 'Epson'],
+            datasets: [{
+                label: '',
+                data: [16000, 10000, 6000, 3000],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+            options: {
+            responsive: true,
+            plugins: {
+            legend: {
+                display: false // Masquer la légende complètement
+            }
+        },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
+

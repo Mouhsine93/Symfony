@@ -1,0 +1,359 @@
+/* Styles personnalisés pour le tableau de bord */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.sidebar {
+  background-color: #1e1e2f;
+  color: #fff;
+  min-height: 100vh;
+  width: 240px;
+  transition: all 0.3s;
+  padding-top: 20px;
+  position: relative;
+  height: 100vh;
+}
+
+.sidebar .logo-details {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.sidebar .logo-details img {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+}
+
+.sidebar .logo-details .logo_name {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sidebar .nav-links {
+  margin-top: 30px;
+  padding: 0;
+}
+
+.sidebar .nav-links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.sidebar .nav-links li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #a6a6b3;
+  padding: 12px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.sidebar .nav-links li a:hover,
+.sidebar .nav-links li a.active {
+  background-color: #34344e;
+  color: #fff;
+}
+
+.sidebar .nav-links li a i {
+  min-width: 40px;
+  text-align: center;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.sidebar .nav-links li a span {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+  padding: 10px 15px;
+  background-color: inherit;
+  text-align: center;
+  border-top: 1px solid #495057;
+}
+
+.sidebar-footer .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.sidebar-footer .nav-link:hover {
+  background-color: #495057;
+  color: #ffffff;
+}
+
+.sidebar-footer .nav-link i {
+  margin-right: 8px;
+}
+
+.home-content {
+  width: calc(100% - 240px);
+  margin-left: 240px;
+  padding: 20px;
+}
+
+.home-content .text {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.search-box {
+  position: relative;
+  max-width: 300px;
+  margin-left: auto;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px 35px 8px 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.search-box i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+  color: #343a40;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Personnalisation du tableau */
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff; /* Fond du tableau */
+}
+
+.table thead {
+  background-color: #1e1e2f; /* Couleur d'en-tête personnalisée */
+  color: #ffffff; /* Texte blanc pour contraste */
+  font-weight: bold;
+  text-transform: uppercase; /* Met les titres en majuscules */
+}
+
+.table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f8f9fa; /* Alternance des couleurs des lignes */
+}
+
+.table tbody tr:hover {
+  background-color: #e2e6ea; /* Couleur plus claire au survol */
+}
+
+.table td,
+.table th {
+  padding: 12px; /* Espacement interne des cellules */
+  vertical-align: middle; /* Alignement vertical */
+  text-align: center; /* Alignement horizontal */
+  border-top: 1px solid #dee2e6; /* Bordure au-dessus des cellules */
+}
+
+.table td:first-child,
+.table th:first-child {
+  border-left: 1px solid #dee2e6; /* Bordure à gauche des premières cellules */
+}
+
+.table td:last-child,
+.table th:last-child {
+  border-right: 1px solid #dee2e6; /* Bordure à droite des dernières cellules */
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card__content {
+  position: relative;
+  z-index: 2;
+}
+
+.stat-card__title {
+  color: #718096;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card__value {
+  color: #2d3748;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card__comparison {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.stat-card__percentage {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.stat-card__percentage--positive {
+  color: #48bb78;
+}
+
+.stat-card__percentage--negative {
+  color: #e53e3e;
+}
+
+.stat-card__period {
+  color: #718096;
+}
+
+.stat-card__icon {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #fff;
+  opacity: 0.2;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover .stat-card__icon {
+  transform: scale(1.1);
+  opacity: 0.3;
+}
+
+.stat-card__icon--primary {
+  background-color: #4299e1;
+}
+.stat-card__icon--success {
+  background-color: #48bb78;
+}
+.stat-card__icon--info {
+  background-color: #4fd1c5;
+}
+.stat-card__icon--warning {
+  background-color: #ecc94b;
+}
+
+/* Styles pour le bouton hamburger */
+#sidebarToggle {
+  background-color: #1e1e2f;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#sidebarToggle:hover {
+  background-color: #34344e;
+  color: #ffffff;
+}
+
+#sidebarToggle i {
+  font-size: 1.25rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-size: 1.7rem;
+  color: #343a40;
+}
+
+.navbar-brand span {
+  font-weight: 600;
+}
+
+/* Espacement du bouton hamburger et du logo */
+.d-flex.align-items-center {
+  margin-right: auto; /* Aligne le contenu à gauche */
+}
+
+/* Input Group */
+.input-group input {
+  border-radius: 20px 0 0 20px;
+  border-right: none;
+}
+
+.input-group button {
+  border-radius: 0 20px 20px 0;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+.input-group button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+  }
+
+  .sidebar .logo-details .logo_name {
+    display: none;
+  }
+
+  .sidebar .nav-links li a span {
+    display: none;
+  }
+}
