@@ -27,7 +27,7 @@ class Utilisateur implements UserInterface,  PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $mot_de_passe_hash = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $jeton = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]

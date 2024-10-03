@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use DateTime;
 
 class RegistrationController extends AbstractController
 {
@@ -28,7 +29,8 @@ class RegistrationController extends AbstractController
 
             // encode the plain password
             $user->setMotDePasseHash($userPasswordHasher->hashPassword($user, $plainPassword));
-
+            $user->setJeton(bin2hex(random_bytes(16)));
+            $user->setCreatedAt(new DateTime());
             $entityManager->persist($user);
             $entityManager->flush();
 
