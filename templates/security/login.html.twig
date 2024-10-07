@@ -10,6 +10,28 @@
     {% block stylesheets %}
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh; /* Remplit toute la hauteur de la fenêtre */
+                background-color: #f8f9fa; /* Couleur de fond légère */
+            }
+            .logo-container {
+                text-align: center; /* Centrer le contenu du conteneur */
+                margin-bottom: 20px; /* Espacement entre le logo/titres et le formulaire */
+            }
+            .form-container {
+                max-width: 400px; /* Limiter la largeur du formulaire */
+                width: 100%; /* S'assurer que le formulaire utilise toute la largeur disponible */
+                margin: 0 auto; /* Centrer horizontalement le conteneur du formulaire */
+            }
+            #logo {
+                width: 150px; /* Ajustez la taille du logo ici */
+                height: auto; /* Conserver les proportions du logo */
+            }
+        </style>
     {% endblock %}
 </head>
 <body>
@@ -17,69 +39,61 @@
         <div class="row">
             <!-- Sidebar -->
            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
-    <div class="position-sticky pt-3">
-        <div class="logo-details">
-            <img src="{{ asset('images/icon/logo2.ico') }}" alt="Logo" id="logo">
-            <span class="logo_name">Gestion de Stock</span>
-        </div>
+               <div class="position-sticky pt-3">
+                   <div class="logo-details">
 
-    </div>
+                       <span class="logo_name">Page de connexion</span>
+                   </div>
+               </div>
+           </nav>
 
-
-</nav>
-
-            
             <!-- Main content -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 {% block body %}
+                <div class="text-center mt-5">
+                    <img src="{{ asset('images/icon/logo2.png') }}" alt="Logo" id="logo">
+                    <h1 class="h3 mb-3" style="font-weight: bold;">Connexion</h1>
+                    <h1 class="h3 mb-3" style="font-weight: bold;">Gestion de Stock</h1>
+                </div>
 
+               <div class="form-container">
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+        {% if app.user %}
+            <div class="mb-3">
+               Votre jeton a expiré. Veuillez vous déconnecter. <a href="{{ path('app_logout') }}"><br/>Me déconnecter</a>
+            </div>
+        {% endif %}
 
-    {% if app.user %}
         <div class="mb-3">
-           Vous êtes déjà connecté(e) en tant que  {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Me déconnecter</a>
+            <label for="inputEmail">Email</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
         </div>
-    {% endif %}
+        <div class="mb-3">
+            <label for="inputPassword">Mot de passe</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        </div>
 
-    <h1 class="h3 mb-3 font-weight-normal">Page de connexion</h1>
-    <div>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-   </div>
-   <div>
-    <label for="inputPassword">Mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <div class="d-flex justify-content-center"> <!-- Ajouté ici -->
+            <button class="btn btn-lg btn-primary" type="submit">
+                Me connecter
+            </button>
+        </div>
+    </form>
 </div>
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
 
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" name="_remember_me"> Remember me
-        </label>
-    </div>
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Me connecter
-    </button>
-        <p><a href="#">Mot de passe oublié</a></p>
-   <p>Pas encore inscrit(e) ? <a href="{{ path('app_register') }}">M'inscrire</a></p>
-</form>
-{% endblock %}
+                {% endblock %}
             </main>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     {% block javascripts %}{% endblock %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
 </body>
 </html>
-    
-
-

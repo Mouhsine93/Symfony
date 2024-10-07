@@ -2,6 +2,8 @@
 
 namespace App\Security;
 
+use App\Entity\Utilisateur;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,14 +24,18 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    private UrlGeneratorInterface $urlGenerator;
+    private EntityManagerInterface $entityManager;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator, EntityManagerInterface $entityManager)
     {
+        $this->urlGenerator = $urlGenerator;
+        $this->entityManager = $entityManager;
     }
 
     public function authenticate(Request $request): Passport
     {
         $email = $request->getPayload()->getString('email');
-
         $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email);
 
         return new Passport(
@@ -44,13 +50,39 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse($targetPath);
+        $user = $token->getUser();
+
+        if ($user instanceof Utilisateur) {
+            // Vérification si le jeton est valide
+            if ($user->isJetonValide()) {
+                
+                // Authentification réussie
+                if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+                    return new RedirectResponse($targetPath);
+                }
+                return new RedirectResponse($this->urlGenerator->generate('app_dashboard'));
+            } else {
+                // Authentification échouée, jeton invalide
+                // Rediriger vers la page de connexion
+                return new RedirectResponse($this->urlGenerator->generate(self::LOGIN_ROUTE));
+            }
+
+            // Gérer jeton seulement lors de la connexion
+            $newToken = bin2hex(random_bytes(16));
+            $user->setJeton($newToken);
+            
+            // Date d'expiration (30 minutes à partir de maintenant)
+            $expirationDate = new \DateTime();
+            $expirationDate->modify('+30 minutes');
+            $user->setJetonExpireAt($expirationDate);
+            
+            // Récupère l'EntityManager pour persister les changements
+            $this->entityManager->flush(); // Persiste les modifications
         }
 
-        // For example:
-         return new RedirectResponse($this->urlGenerator->generate('app_dashboard'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        return new RedirectResponse($this->urlGenerator->generate('app_login', [
+            'error' => 'Votre jeton a expiré. Veuillez vous reconnecter.'
+        ]));
     }
 
     protected function getLoginUrl(Request $request): string

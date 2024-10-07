@@ -30,6 +30,9 @@ class Utilisateur implements UserInterface,  PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $jeton = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $jetonExpireAt = null;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
 
@@ -85,6 +88,23 @@ class Utilisateur implements UserInterface,  PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getJetonExpireAt(): ?\DateTimeInterface
+    {
+        return $this->jetonExpireAt;
+    }
+
+    public function setJetonExpireAt(?\DateTimeInterface $jetonExpireAt): self
+    {
+        $this->jetonExpireAt = $jetonExpireAt;
+        return $this;
+    }
+
+    public function isJetonValide(): bool
+{
+    return $this->jetonExpireAt !== null && new \DateTime() < $this->jetonExpireAt;
+}
+
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
