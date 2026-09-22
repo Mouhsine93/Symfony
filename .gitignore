@@ -23,3 +23,10 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> local override ###
+/.env
+/.env.local
+/.env.local.php
+/.env.*.local
+###< local override ###
